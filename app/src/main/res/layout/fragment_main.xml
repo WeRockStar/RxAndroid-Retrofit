@@ -15,12 +15,13 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="50dp"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/imageViewProfile"
         android:layout_alignTop="@id/imageViewProfile"
         android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
         android:indeterminate="true" />
 
     <TextView
@@ -30,7 +31,7 @@
         android:layout_below="@id/imageViewProfile"
         android:layout_marginTop="10dp"
         android:padding="8dp"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tvFullName"
@@ -38,6 +39,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvUsername"
         android:padding="8dp"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
 
 </RelativeLayout>
