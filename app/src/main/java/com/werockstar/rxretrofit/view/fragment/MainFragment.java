@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +21,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class MainFragment extends Fragment {
@@ -29,6 +29,8 @@ public class MainFragment extends Fragment {
     private ImageView imageViewAvatar;
     private TextView tvUsername;
     private TextView tvFullName;
+
+    private ProgressBar progressBar;
 
     String BASE_URL = "https://api.github.com/users/";
 
@@ -63,6 +65,7 @@ public class MainFragment extends Fragment {
                     @Override
                     public void onCompleted() {
                         Toast.makeText(getContext(), "Completed", Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -75,9 +78,10 @@ public class MainFragment extends Fragment {
                         if (githubCollection != null) {
                             tvUsername.setText(githubCollection.getUsername());
                             tvFullName.setText(githubCollection.getFullName());
+
+                            imageViewAvatar.setVisibility(View.VISIBLE);
                             Glide.with(getActivity()).load(githubCollection.getAvatar()).into(imageViewAvatar);
                         }
-                        Toast.makeText(getContext(), githubCollection.getFullName(), Toast.LENGTH_LONG).show();
                     }
                 });
     }
@@ -86,6 +90,7 @@ public class MainFragment extends Fragment {
         imageViewAvatar = (ImageView) view.findViewById(R.id.imageViewProfile);
         tvFullName = (TextView) view.findViewById(R.id.tvFullName);
         tvUsername = (TextView) view.findViewById(R.id.tvUsername);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
     }
 
 }
