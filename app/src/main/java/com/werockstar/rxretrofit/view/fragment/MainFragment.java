@@ -7,8 +7,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.werockstar.rxretrofit.R;
+import com.werockstar.rxretrofit.manager.service.GithubAPI;
+import com.werockstar.rxretrofit.model.GithubCollection;
+
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 public class MainFragment extends Fragment {
 
@@ -16,6 +29,8 @@ public class MainFragment extends Fragment {
     private ImageView imageViewAvatar;
     private TextView tvUsername;
     private TextView tvFullName;
+
+    String BASE_URL = "https://api.github.com/users/";
 
     public MainFragment() {
     }
@@ -26,8 +41,45 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         initialView(view);
+        getGithubInfo();
 
         return view;
+    }
+
+    private void getGithubInfo() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+        GithubAPI api = retrofit.create(GithubAPI.class);
+        Observable<GithubCollection> observable = api.getGithubInfo("werockstar");
+
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .unsubscribeOn(Schedulers.io())
+                .subscribe(new Observer<GithubCollection>() {
+                    @Override
+                    public void onCompleted() {
+                        Toast.makeText(getContext(), "Completed", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onNext(GithubCollection githubCollection) {
+                        if (githubCollection != null) {
+                            tvUsername.setText(githubCollection.getUsername());
+                            tvFullName.setText(githubCollection.getFullName());
+                            Glide.with(getActivity()).load(githubCollection.getAvatar()).into(imageViewAvatar);
+                        }
+                        Toast.makeText(getContext(), githubCollection.getFullName(), Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     private void initialView(View view) {
