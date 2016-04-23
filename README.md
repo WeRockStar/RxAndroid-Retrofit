@@ -1,4 +1,6 @@
 #### Android Reactive Programming
+- Observables is producing entities.
+- Observers is consuming
 
 ##### Reactive library used this repository 
 ```groovy
