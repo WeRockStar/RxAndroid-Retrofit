@@ -20,13 +20,10 @@ public class GithubPresenterImpl implements GithubPresenter {
     @Override
     public void getGithubInfo() {
         HttpsManager.getInstance().getGithubInfo()
-                .map(new Func1<GithubCollection, GithubCollection>() {
-                    @Override
-                    public GithubCollection call(GithubCollection githubInfo) {
-                        githubInfo.setUsername("Username : " + githubInfo.getUsername());
-                        githubInfo.setFullName("Full name : " + githubInfo.getFullName());
-                        return githubInfo;
-                    }
+                .map(info -> {
+                    info.setFullName("Full name : " + info.getFullName());
+                    info.setUsername("Username : " + info.getUsername());
+                    return info;
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
