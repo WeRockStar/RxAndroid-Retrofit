@@ -45,6 +45,6 @@ public class HttpsManager {
 
 
     public Observable<GithubCollection> getGithubInfo() {
-        return HttpsManager.getInstance().getService().getGithubInfo("werocKstar");
+        return HttpsManager.getInstance().getService().getGithubInfo("werockstar");
     }
 }
