@@ -13,7 +13,7 @@ import rx.Subscriber;
 
 public class HttpsManager {
 
-    private String BASE_URL = "https://api.github.com/users/";
+    private static final String BASE_URL = "https://api.github.com/users/";
 
     private static HttpsManager httpsManager;
 

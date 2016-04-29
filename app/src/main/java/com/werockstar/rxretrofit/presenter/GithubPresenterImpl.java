@@ -5,6 +5,8 @@ import com.werockstar.rxretrofit.model.GithubCollection;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 public class GithubPresenterImpl implements GithubPresenter {
@@ -18,6 +20,14 @@ public class GithubPresenterImpl implements GithubPresenter {
     @Override
     public void getGithubInfo() {
         HttpsManager.getInstance().getGithubInfo()
+                .map(new Func1<GithubCollection, GithubCollection>() {
+                    @Override
+                    public GithubCollection call(GithubCollection githubInfo) {
+                        githubInfo.setUsername("Username : " + githubInfo.getUsername());
+                        githubInfo.setFullName("Full name : " + githubInfo.getFullName());
+                        return githubInfo;
+                    }
+                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
