@@ -3,6 +3,7 @@ package com.werockstar.rxretrofit.presenter;
 import com.werockstar.rxretrofit.manager.HttpsManager;
 import com.werockstar.rxretrofit.model.GithubCollection;
 
+import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -25,6 +26,7 @@ public class GithubPresenterImpl implements GithubPresenter {
                     info.setUsername("Username : " + info.getUsername());
                     return info;
                 })
+                .onErrorResumeNext(throwable -> Observable.empty())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
