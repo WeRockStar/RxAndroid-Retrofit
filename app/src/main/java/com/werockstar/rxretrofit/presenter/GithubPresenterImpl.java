@@ -4,10 +4,7 @@ import com.werockstar.rxretrofit.manager.HttpsManager;
 import com.werockstar.rxretrofit.model.GithubCollection;
 
 import rx.Observable;
-import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 public class GithubPresenterImpl implements GithubPresenter {
@@ -30,24 +27,11 @@ public class GithubPresenterImpl implements GithubPresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
-                .subscribe(new SubscribeGithubInfo());
+                .subscribe(
+                        githubCollection -> view.showGithubInfo(githubCollection),
+                        throwable -> view.onError(throwable),
+                        () -> view.onCompleted()
+                );
     }
 
-    public class SubscribeGithubInfo implements Observer<GithubCollection> {
-
-        @Override
-        public void onCompleted() {
-            view.onCompleted();
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            view.onError(e);
-        }
-
-        @Override
-        public void onNext(GithubCollection collection) {
-            view.showGithubInfo(collection);
-        }
-    }
 }
