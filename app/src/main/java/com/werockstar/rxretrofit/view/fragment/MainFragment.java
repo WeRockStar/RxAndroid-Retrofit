@@ -72,4 +72,11 @@ public class MainFragment extends Fragment implements GithubPresenter.View {
     public void onError(Throwable t) {
         Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        presenter.onStop();
+    }
 }

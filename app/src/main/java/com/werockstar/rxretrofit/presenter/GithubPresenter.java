@@ -5,6 +5,7 @@ import com.werockstar.rxretrofit.model.GithubCollection;
 public interface GithubPresenter {
 
     void getGithubInfo();
+    void onStop();
 
     interface View {
         void showGithubInfo(GithubCollection collection);
