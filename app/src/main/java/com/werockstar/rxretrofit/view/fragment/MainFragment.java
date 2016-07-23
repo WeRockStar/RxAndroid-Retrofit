@@ -1,5 +1,6 @@
 package com.werockstar.rxretrofit.view.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.werockstar.rxretrofit.MainApplication;
 import com.werockstar.rxretrofit.R;
 import com.werockstar.rxretrofit.model.GithubCollection;
 import com.werockstar.rxretrofit.presenter.GithubPresenter;
@@ -29,6 +31,13 @@ public class MainFragment extends Fragment implements GithubPresenter.View {
     private GithubPresenter presenter;
 
     public MainFragment() {
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        ((MainApplication) getActivity().getApplication()).getComponent().inject(this);
     }
 
     @Override
