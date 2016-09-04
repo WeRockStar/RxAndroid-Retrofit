@@ -37,6 +37,6 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.8'
     compile 'com.github.bumptech.glide:glide:3.7.0'
 
-    compile 'com.google.dagger:dagger:2.5'
-    apt 'com.google.dagger:dagger-compiler:2.5'
+    compile 'com.google.dagger:dagger:2.6'
+    apt 'com.google.dagger:dagger-compiler:2.6'
 }
