@@ -14,9 +14,14 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.werockstar.rxretrofit.MainApplication;
 import com.werockstar.rxretrofit.R;
+import com.werockstar.rxretrofit.manager.service.GithubAPI;
 import com.werockstar.rxretrofit.model.GithubCollection;
 import com.werockstar.rxretrofit.presenter.GithubPresenter;
 import com.werockstar.rxretrofit.presenter.GithubPresenterImpl;
+
+import javax.inject.Inject;
+
+import retrofit2.Retrofit;
 
 
 public class MainFragment extends Fragment implements GithubPresenter.View {
@@ -29,6 +34,12 @@ public class MainFragment extends Fragment implements GithubPresenter.View {
     private ProgressBar progressBar;
 
     private GithubPresenter presenter;
+
+    @Inject
+    GithubAPI api;
+
+    @Inject
+    Retrofit retrofit;
 
     public MainFragment() {
     }

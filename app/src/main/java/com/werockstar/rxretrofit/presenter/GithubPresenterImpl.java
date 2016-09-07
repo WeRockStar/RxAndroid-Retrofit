@@ -1,7 +1,9 @@
 package com.werockstar.rxretrofit.presenter;
 
 import com.werockstar.rxretrofit.manager.HttpsManager;
+import com.werockstar.rxretrofit.manager.service.GithubAPI;
 
+import retrofit2.Retrofit;
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -11,6 +13,7 @@ public class GithubPresenterImpl implements GithubPresenter {
 
     private GithubPresenter.View view;
     private Subscription subscribe;
+    private GithubAPI api;
 
     public GithubPresenterImpl(View view) {
         this.view = view;
