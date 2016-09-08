@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.werockstar.rxretrofit.di.component.AndroidComponent;
 import com.werockstar.rxretrofit.di.component.DaggerAndroidComponent;
+import com.werockstar.rxretrofit.di.module.ServiceModule;
 
 public class MainApplication extends Application {
 
@@ -13,7 +14,9 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        component = DaggerAndroidComponent.builder().build();
+        component = DaggerAndroidComponent.builder()
+                .serviceModule(new ServiceModule())
+                .build();
     }
 
     public AndroidComponent getComponent() {

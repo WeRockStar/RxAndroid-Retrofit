@@ -1,5 +1,7 @@
 package com.werockstar.rxretrofit.di.module;
 
+import android.app.Application;
+
 import com.werockstar.rxretrofit.manager.service.GithubAPI;
 
 import javax.inject.Singleton;

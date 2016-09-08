@@ -14,14 +14,15 @@ public class GithubPresenterImpl implements GithubPresenter {
     private GithubPresenter.View view;
     private Subscription subscribe;
     private GithubAPI api;
-
-    public GithubPresenterImpl(View view) {
+    
+    public GithubPresenterImpl(View view, GithubAPI api) {
         this.view = view;
+        this.api = api;
     }
 
     @Override
     public void getGithubInfo() {
-        subscribe = HttpsManager.getInstance().getGithubInfo()
+        subscribe = api.getGithubInfo("WeRockStar")
                 .map(info -> {
                     info.setFullName("Full name : " + info.getFullName());
                     info.setUsername("Username : " + info.getUsername());
@@ -32,7 +33,7 @@ public class GithubPresenterImpl implements GithubPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
                 .subscribe(
-                        githubCollection -> view.showGithubInfo(githubCollection),
+                        github -> view.showGithubInfo(github),
                         throwable -> view.onError(throwable),
                         () -> view.onCompleted()
                 );

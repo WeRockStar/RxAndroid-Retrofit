@@ -38,8 +38,6 @@ public class MainFragment extends Fragment implements GithubPresenter.View {
     @Inject
     GithubAPI api;
 
-    @Inject
-    Retrofit retrofit;
 
     public MainFragment() {
     }
@@ -56,7 +54,7 @@ public class MainFragment extends Fragment implements GithubPresenter.View {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        presenter = new GithubPresenterImpl(this);
+        presenter = new GithubPresenterImpl(this, api);
 
         initialView(view);
         presenter.getGithubInfo();
