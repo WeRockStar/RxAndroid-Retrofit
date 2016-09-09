@@ -99,6 +99,7 @@ public class MainFragment extends Fragment implements GithubPresenter.View {
 
     @Override
     public void onError(Throwable t) {
+        progressBar.setVisibility(View.GONE);
         Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
     }
 
