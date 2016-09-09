@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -30,6 +32,8 @@ public class MainFragment extends Fragment implements GithubPresenter.View {
     private ImageView imageViewAvatar;
     private TextView tvUsername;
     private TextView tvFullName;
+    private EditText edtUsername;
+    private Button btnSearch;
 
     private ProgressBar progressBar;
 
@@ -57,7 +61,6 @@ public class MainFragment extends Fragment implements GithubPresenter.View {
         presenter = new GithubPresenterImpl(this, api);
 
         initialView(view);
-        presenter.getGithubInfo();
 
         return view;
     }
@@ -67,6 +70,14 @@ public class MainFragment extends Fragment implements GithubPresenter.View {
         tvFullName = (TextView) view.findViewById(R.id.tvFullName);
         tvUsername = (TextView) view.findViewById(R.id.tvUsername);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        btnSearch = (Button) view.findViewById(R.id.btnSearch);
+        edtUsername = (EditText) view.findViewById(R.id.edtUsername);
+        progressBar.setVisibility(View.GONE);
+
+        btnSearch.setOnClickListener(v -> {
+            progressBar.setVisibility(View.VISIBLE);
+            presenter.getGithubInfo(edtUsername.getText().toString());
+        });
     }
 
     @Override

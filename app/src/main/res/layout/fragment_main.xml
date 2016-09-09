@@ -4,10 +4,25 @@
     android:layout_height="match_parent"
     tools:context="com.werockstar.rxretrofit.view.fragment.MainFragment">
 
+    <EditText
+        android:id="@+id/edtUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="username" />
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtUsername"
+        android:layout_centerHorizontal="true"
+        android:text="Search" />
+
     <ImageView
         android:id="@+id/imageViewProfile"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_below="@id/btnSearch"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:adjustViewBounds="true"

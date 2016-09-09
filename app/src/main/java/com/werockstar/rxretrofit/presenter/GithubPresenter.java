@@ -4,7 +4,7 @@ import com.werockstar.rxretrofit.model.GithubCollection;
 
 public interface GithubPresenter {
 
-    void getGithubInfo();
+    void getGithubInfo(String username);
     void onStop();
 
     interface View {

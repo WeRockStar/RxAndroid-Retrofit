@@ -14,15 +14,15 @@ public class GithubPresenterImpl implements GithubPresenter {
     private GithubPresenter.View view;
     private Subscription subscribe;
     private GithubAPI api;
-    
+
     public GithubPresenterImpl(View view, GithubAPI api) {
         this.view = view;
         this.api = api;
     }
 
     @Override
-    public void getGithubInfo() {
-        subscribe = api.getGithubInfo("WeRockStar")
+    public void getGithubInfo(String username) {
+        subscribe = api.getGithubInfo(username)
                 .map(info -> {
                     info.setFullName("Full name : " + info.getFullName());
                     info.setUsername("Username : " + info.getUsername());
