@@ -1,9 +1,7 @@
 package com.werockstar.rxretrofit.presenter;
 
-import com.werockstar.rxretrofit.manager.HttpsManager;
 import com.werockstar.rxretrofit.manager.service.GithubAPI;
 
-import retrofit2.Retrofit;
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
