@@ -26,7 +26,6 @@ public class GithubPresenterImpl implements GithubPresenter {
                     info.setUsername("Username : " + info.getUsername());
                     return info;
                 })
-                .onErrorResumeNext(throwable -> Observable.empty())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())

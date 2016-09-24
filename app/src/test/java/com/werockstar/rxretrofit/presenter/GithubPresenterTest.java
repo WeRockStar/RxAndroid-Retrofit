@@ -52,4 +52,12 @@ public class GithubPresenterTest {
         verify(view).showGithubInfo(collection);
         verify(view).onCompleted();
     }
+
+    @Test
+    public void should_see_error() throws Exception {
+        Throwable exception = new Throwable();
+        when(api.getGithubInfo(USERNAME)).thenReturn(Observable.error(exception));
+        presenter.getGithubInfo(USERNAME);
+        verify(view).onError(exception);
+    }
 }
