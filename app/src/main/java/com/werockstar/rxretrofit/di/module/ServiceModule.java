@@ -27,7 +27,7 @@ public class ServiceModule {
 
     @Provides
     @Singleton
-    public GithubAPI provideGitHubAp(Retrofit retrofit) {
+    public GithubAPI provideGitHubApi(Retrofit retrofit) {
         return retrofit.create(GithubAPI.class);
     }
 }
