@@ -6,6 +6,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({GithubPresenterTest.class, ExampleUnitTest.class})
+@Suite.SuiteClasses({GithubPresenterTest.class})
 public class RunAllTest {
 }
