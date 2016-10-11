@@ -1,3 +1,7 @@
+## RxJava, RxAndroid and Retrofit 
+
+[![Build Status](https://travis-ci.org/WeRockStar/RxAndroid-Retrofit.svg?branch=master)](https://travis-ci.org/WeRockStar/RxAndroid-Retrofit)
+
 #### Android Reactive Programming
 - Observables is producing entities.
 - Observers is consuming.
