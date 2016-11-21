@@ -15,3 +15,8 @@ android:
 script:
   # Unit Test
   - ./gradlew test
+notifications:
+  slack:
+      on_success: always
+      rooms:
+        - werockstar:wl61Y86uYultyrQHTR3RE9Cx#ci_notify
