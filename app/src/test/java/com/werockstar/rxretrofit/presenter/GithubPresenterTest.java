@@ -36,7 +36,7 @@ public class GithubPresenterTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        presenter = new GithubPresenterImpl(view, api);
+        presenter = new GithubPresenter(view, api);
         collection = new GithubCollection();
     }
 

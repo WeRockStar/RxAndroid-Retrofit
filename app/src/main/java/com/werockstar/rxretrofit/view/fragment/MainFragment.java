@@ -19,11 +19,8 @@ import com.werockstar.rxretrofit.R;
 import com.werockstar.rxretrofit.manager.service.GithubAPI;
 import com.werockstar.rxretrofit.model.GithubCollection;
 import com.werockstar.rxretrofit.presenter.GithubPresenter;
-import com.werockstar.rxretrofit.presenter.GithubPresenterImpl;
 
 import javax.inject.Inject;
-
-import retrofit2.Retrofit;
 
 
 public class MainFragment extends Fragment implements GithubPresenter.View {
@@ -58,7 +55,7 @@ public class MainFragment extends Fragment implements GithubPresenter.View {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        presenter = new GithubPresenterImpl(this, api);
+        presenter = new GithubPresenter(this, api);
 
         initialView(view);
 
