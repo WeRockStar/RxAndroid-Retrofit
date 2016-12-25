@@ -44,7 +44,7 @@ public class GithubPresenter {
     }
 
     public void onStop() {
-        if (!subscribe.isUnsubscribed())
+        if (subscribe != null && !subscribe.isUnsubscribed())
             subscribe.unsubscribe();
     }
 
