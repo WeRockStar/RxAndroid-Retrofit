@@ -1,6 +1,6 @@
 package com.werockstar.rxretrofit.presenter;
 
-import com.werockstar.rxretrofit.manager.service.GithubAPI;
+import com.werockstar.rxretrofit.api.GithubAPI;
 import com.werockstar.rxretrofit.model.GithubCollection;
 
 import rx.Subscription;
@@ -28,14 +28,8 @@ public class GithubPresenter {
 
     public void getGithubInfo(String username) {
         subscribe = api.getGithubInfo(username)
-                .map(info -> {
-                    info.setFullName("Full name : " + info.getFullName());
-                    info.setUsername("Username : " + info.getUsername());
-                    return info;
-                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .unsubscribeOn(Schedulers.io())
                 .subscribe(
                         github -> view.showGithubInfo(github),
                         throwable -> view.onError(throwable),

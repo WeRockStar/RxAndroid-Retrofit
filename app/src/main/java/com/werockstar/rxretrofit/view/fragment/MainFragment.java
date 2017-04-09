@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.werockstar.rxretrofit.MainApplication;
 import com.werockstar.rxretrofit.R;
-import com.werockstar.rxretrofit.manager.service.GithubAPI;
+import com.werockstar.rxretrofit.api.GithubAPI;
 import com.werockstar.rxretrofit.model.GithubCollection;
 import com.werockstar.rxretrofit.presenter.GithubPresenter;
 
@@ -102,8 +102,7 @@ public class MainFragment extends Fragment implements GithubPresenter.View {
 
     @Override
     public void onStop() {
-        super.onStop();
-
         presenter.onStop();
+        super.onStop();
     }
 }

@@ -1,6 +1,6 @@
 package com.werockstar.rxretrofit.presenter;
 
-import com.werockstar.rxretrofit.manager.service.GithubAPI;
+import com.werockstar.rxretrofit.api.GithubAPI;
 import com.werockstar.rxretrofit.model.GithubCollection;
 import com.werockstar.rxretrofit.util.RxSchedulerRule;
 
@@ -36,7 +36,6 @@ public class GithubPresenterTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        presenter = new GithubPresenter(view, api);
         collection = new GithubCollection();
     }
 
@@ -46,7 +45,7 @@ public class GithubPresenterTest {
     }
 
     @Test
-    public void should_see_github_infomations() throws Exception {
+    public void request_github_information_should_show_github_information() throws Exception {
         when(api.getGithubInfo(USERNAME)).thenReturn(Observable.just(collection));
         presenter.getGithubInfo(USERNAME);
         verify(view).showGithubInfo(collection);
@@ -54,7 +53,7 @@ public class GithubPresenterTest {
     }
 
     @Test
-    public void should_see_error() throws Exception {
+    public void request_github_information_should_see_error() throws Exception {
         Throwable exception = new Throwable();
         when(api.getGithubInfo(USERNAME)).thenReturn(Observable.error(exception));
         presenter.getGithubInfo(USERNAME);

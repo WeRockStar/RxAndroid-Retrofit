@@ -1,4 +1,4 @@
-package com.werockstar.rxretrofit.manager.service;
+package com.werockstar.rxretrofit.api;
 
 import com.werockstar.rxretrofit.model.GithubCollection;
 
