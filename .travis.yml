@@ -2,15 +2,15 @@ language: android
 jdk: oraclejdk8
 env:
   matrix:
-    - ANDROID_TARGET=android-24 ANDROID_ABI=x86
+    - ANDROID_TARGET=android-22 ANDROID_ABI=armeabi-v7a
 android:
   components:
   - platform-tools
   - tools
   - build-tools-25.0.2
   - android-25
-  - extra-google-m2repository
   - extra-android-m2repository
+  - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
 
 script:
   # Unit Test
