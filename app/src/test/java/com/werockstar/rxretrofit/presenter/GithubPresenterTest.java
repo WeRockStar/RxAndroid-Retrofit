@@ -21,22 +21,21 @@ import static org.mockito.Mockito.when;
 @RunWith(JUnit4.class)
 public class GithubPresenterTest {
 
-    @Mock
-    GithubPresenter.View view;
-    @Mock
-    GithubAPI api;
+    @Mock GithubPresenter.View view;
+    @Mock GithubAPI api;
+
     GithubPresenter presenter;
 
     @Rule
     public RxSchedulerRule rxSchedulerRule = new RxSchedulerRule();
 
-    GithubCollection collection;
-    private final String USERNAME = "WeRockStar";
+    private GithubCollection github;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        collection = new GithubCollection();
+        presenter = new GithubPresenter(view, api);
+        github = new GithubCollection();
     }
 
     @Test
@@ -46,17 +45,23 @@ public class GithubPresenterTest {
 
     @Test
     public void request_github_information_should_show_github_information() throws Exception {
-        when(api.getGithubInfo(USERNAME)).thenReturn(Observable.just(collection));
-        presenter.getGithubInfo(USERNAME);
-        verify(view).showGithubInfo(collection);
+        String githubUser = "WeRockStar";
+        when(api.getGithubInfo(githubUser)).thenReturn(Observable.just(github));
+
+        presenter.getGithubInfo(githubUser);
+
+        verify(view).showGithubInfo(github);
         verify(view).onCompleted();
     }
 
     @Test
     public void request_github_information_should_see_error() throws Exception {
         Throwable exception = new Throwable();
-        when(api.getGithubInfo(USERNAME)).thenReturn(Observable.error(exception));
-        presenter.getGithubInfo(USERNAME);
+
+        when(api.getGithubInfo("")).thenReturn(Observable.error(exception));
+
+        presenter.getGithubInfo("");
+
         verify(view).onError(exception);
     }
 }
