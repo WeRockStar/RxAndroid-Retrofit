@@ -24,18 +24,16 @@ public class GithubPresenterTest {
     @Mock GithubPresenter.View view;
     @Mock GithubAPI api;
 
-    GithubPresenter presenter;
+    private GithubPresenter presenter;
 
     @Rule
     public RxSchedulerRule rxSchedulerRule = new RxSchedulerRule();
 
-    private GithubCollection github;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         presenter = new GithubPresenter(view, api);
-        github = new GithubCollection();
     }
 
     @Test
@@ -46,6 +44,8 @@ public class GithubPresenterTest {
     @Test
     public void request_github_information_should_show_github_information() throws Exception {
         String githubUser = "WeRockStar";
+        GithubCollection github = new GithubCollection();
+
         when(api.getGithubInfo(githubUser)).thenReturn(Observable.just(github));
 
         presenter.getGithubInfo(githubUser);
